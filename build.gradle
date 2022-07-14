@@ -1,0 +1,49 @@
+
+plugins {
+	id 'org.springframework.boot' version '2.7.0'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+
+group = 'com.ireullin'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	set('springCloudVersion', "2021.0.1")
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// 配置文件提示
+	// implementation 'org.springframework.boot:spring-boot-configuration-porcessor'
+	implementation 'org.springframework.cloud:spring-cloud-starter'
+	
+	// runtimeOnly 'org.postgresql:postgresql'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+// bootJar {
+//     enabled = false
+// 	mainClassName = 'com.ireullin.springboottemplate.SpringbootTemplateApplication'
+// }
+
+// jar {
+//     enabled = true
+// }

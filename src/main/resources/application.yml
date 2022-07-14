@@ -1,0 +1,78 @@
+# 也可以在啟動的時候給
+# --spring.profiles.active=dev
+# 虚拟机参数；
+# -Dspring.profiles.active=dev
+# 修改檔案路徑或名稱 預設為 application.properties或者application.yml
+# –file:./config/
+# –file:./
+# –classpath:/config/
+# –classpath:/
+# 优先级由高到底，高优先级的配置会覆盖低优先级的配置；
+
+# 其他可以用的設定
+# https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html#appendix.application-properties
+
+# 列印出自動配置的值
+debug: true
+
+spring:
+    # 抓UAT的設定
+    profiles:
+        active: uat
+
+    https:
+        encoding:
+            enabled: true
+            charset: utf-8
+            force: true
+    
+    thymelef:
+        cache: false
+
+# log 設定
+logging:
+    logback:
+        rollingpolicy:
+            file-name-pattern: logs/%d{yyyy-MM-dd-HH-mm}.%i.log
+            max-file-size: 10MB
+            #The maximum number of archive log files to keep (defaults to 7).
+            max-history: 3
+
+    file: 
+        path: logs
+
+    pattern:
+        console: "%d{yyyy-MM-dd HH:mm:ss}\t%thread\t%-5level\t%logger{50} - %msg%n"
+        file: "%d{yyyy-MM-dd HH:mm:ss}\t%thread\t%-5level\t%logger{50}\t%msg%n"
+
+    level:
+        root: info
+        com.ireullin.springboottemplate.controllers: trace
+
+--- 
+
+spring:
+    profiles: dev
+
+server: 
+    port: 8080
+
+my-setting:
+    owner: ireullin
+    id: 2200164
+    env: dev
+
+
+---
+spring:
+    profiles: uat
+
+server: 
+    port: 8081
+
+my-setting:
+    owner: ireullin
+    id: 2200164
+    env: uat
+
+

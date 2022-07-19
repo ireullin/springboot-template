@@ -7,16 +7,23 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api(tags = "Login")
 @Controller
 public class Login {
 
     private static Logger log = LoggerFactory.getLogger(Login.class);
 
-    @RequestMapping("/login")
+    @ApiOperation("登入頁面")
+    @GetMapping("/login")
     public String index(HashMap<String, String> params, HttpSession session){
         params.put("user", "ireullin");
 
@@ -29,8 +36,8 @@ public class Login {
     }
     
         
+    @ApiOperation("驗證頁面")
     @PostMapping("/verify")
-    // @ResponseBody // 直接回傳結果
     public String verify(@RequestParam("user") String user, @RequestParam("password") String password, HashMap<String, String> params, HttpSession session){
         
         log.trace("verify be called");
@@ -43,6 +50,34 @@ public class Login {
         else{
             session.setAttribute("msg", "帳密錯誤");
             return "redirect:/login";
+        }
+    }
+
+    public static class LoginReq{
+        private String user;
+        private String password;
+        public String getUser(){ return user; }
+        public String getPassword(){ return password; }
+        public void setUser(String user){this.user=user;}
+        public void setPassword(String password){this.password=password;}
+    }
+    
+    public record LoginRsp(String user, String status) {
+    }
+
+    @ApiOperation("驗證API")
+    @PostMapping("/verify/json")
+    @ResponseBody
+    public LoginRsp verifyFromJson(@RequestBody LoginReq req, HashMap<String, String> params, HttpSession session){
+        
+        log.trace("verify be called");
+        
+        if(req.getUser().equals("ireullin") && req.getPassword().equals("1234")){
+            session.setAttribute("user", req.getUser());
+            return new LoginRsp(req.getUser(), "OK");
+        }
+        else{
+            return new LoginRsp(req.getUser(), "failed");
         }
     }
 }

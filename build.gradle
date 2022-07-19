@@ -21,6 +21,8 @@ ext {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'io.springfox:springfox-boot-starter:3.0.0'
+
 	// 配置文件提示
 	// implementation 'org.springframework.boot:spring-boot-configuration-porcessor'
 	implementation 'org.springframework.cloud:spring-cloud-starter'

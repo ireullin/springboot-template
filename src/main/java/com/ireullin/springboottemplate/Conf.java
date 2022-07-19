@@ -6,8 +6,6 @@ import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import com.ireullin.springboottemplate.components.MyHandler;
-
 /*
  * 自定義的設定
  */
@@ -19,12 +17,15 @@ public class Conf implements WebMvcConfigurer {
     */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new MyHandler())
-            .addPathPatterns("/**")
-            .excludePathPatterns("/login")
-            .excludePathPatterns("/verify")
-            .excludePathPatterns("/info")
-            .excludePathPatterns("/assets/**");
+        // 檔未登入使用者,開發時可以先註解掉
+        // registry.addInterceptor(new MyHandler())
+        //     .addPathPatterns("/**")
+        //     .excludePathPatterns("/login")
+        //     .excludePathPatterns("/verify")
+        //     .excludePathPatterns("/verify/json")
+        //     .excludePathPatterns("/info")
+        //     .excludePathPatterns("/swagger-ui/**")
+        //     .excludePathPatterns("/assets/**");
     }
 
     @Override

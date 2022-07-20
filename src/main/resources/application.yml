@@ -13,12 +13,12 @@
 # https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html#appendix.application-properties
 
 # 列印出自動配置的值
-debug: true
+# debug: true
 
 spring:
     # 抓UAT的設定
     profiles:
-        active: uat
+        active: dev
 
     https:
         encoding:
@@ -29,10 +29,7 @@ spring:
     thymelef:
         cache: false
 
-    # 沒這行spring boot 2.7之後swagger會報錯
-    mvc:
-        pathmatch:
-           matching-strategy: ANT_PATH_MATCHER
+   
 
 # log 設定
 logging:
@@ -58,6 +55,19 @@ logging:
 
 spring:
     profiles: dev
+    
+    mvc:
+        # 沒這行spring boot 2.7之後swagger會報錯
+        pathmatch:
+           matching-strategy: ANT_PATH_MATCHER
+
+    # 資料庫資訊
+    datasource:
+        # 預設會是 HikariPool 有的範例好像會變成tomcat
+        driverClassName: org.postgresql.Driver
+        url: jdbc:postgresql://dbpgsql.dev.ai/postgres
+        username: user
+        password: 1234
 
 server: 
     port: 8080

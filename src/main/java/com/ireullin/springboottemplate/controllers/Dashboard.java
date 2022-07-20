@@ -1,6 +1,8 @@
 package com.ireullin.springboottemplate.controllers;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -8,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,6 +33,9 @@ public class Dashboard {
     @Autowired 
     private MySetting mySetting;
 
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
     // 從設定檔讀
     @Value("${server.port}")
     private String port;
@@ -43,10 +49,14 @@ public class Dashboard {
     @ApiOperation("回傳info")
     @GetMapping("/info")
     @ResponseBody // 直接回傳結果
-    public InfoRsp info(HashMap<String, String> params, HttpSession session){
+    public InfoRsp info(HashMap<String, String> params, HttpSession session) throws Exception{
         return new InfoRsp(port, mySetting);
     }
 
-
-
+    @ApiOperation("查DB")
+    @GetMapping("/querydb")
+    @ResponseBody // 直接回傳結果
+    public List<Map<String,Object>> queryDb(HashMap<String, String> params, HttpSession session) throws Exception{
+        return jdbcTemplate.queryForList("select * from account limit 10");
+    }
 }

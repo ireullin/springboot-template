@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Api(tags = "Login")
 @Controller
@@ -53,13 +55,19 @@ public class Login {
         }
     }
 
+    @Data
+    @NoArgsConstructor
     public static class LoginReq{
         private String user;
         private String password;
-        public String getUser(){ return user; }
-        public String getPassword(){ return password; }
-        public void setUser(String user){this.user=user;}
-        public void setPassword(String password){this.password=password;}
+
+        // @Data
+        // @NoArgsConstructor
+        // 以上兩個annotation取代以下function
+        // public String getUser(){ return user; }
+        // public String getPassword(){ return password; }
+        // public void setUser(String user){this.user=user;}
+        // public void setPassword(String password){this.password=password;}
     }
     
     public record LoginRsp(String user, String status) {

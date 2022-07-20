@@ -21,13 +21,22 @@ ext {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'io.springfox:springfox-boot-starter:3.0.0'
-
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	// 配置文件提示
 	// implementation 'org.springframework.boot:spring-boot-configuration-porcessor'
+	// 微服務相關功能
 	implementation 'org.springframework.cloud:spring-cloud-starter'
 	
-	// runtimeOnly 'org.postgresql:postgresql'
+	// swagger
+	implementation 'io.springfox:springfox-boot-starter:3.0.0'
+	
+	// 資料庫
+	compileOnly 'org.postgresql:postgresql'
+	
+	// 自動生成getter setter
+	compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+	
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 

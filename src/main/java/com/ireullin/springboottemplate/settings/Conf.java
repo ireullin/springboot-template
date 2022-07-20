@@ -1,4 +1,4 @@
-package com.ireullin.springboottemplate;
+package com.ireullin.springboottemplate.settings;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

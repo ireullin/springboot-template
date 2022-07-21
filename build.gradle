@@ -31,7 +31,7 @@ dependencies {
 	implementation 'io.springfox:springfox-boot-starter:3.0.0'
 	
 	// 資料庫
-	compileOnly 'org.postgresql:postgresql'
+	runtimeOnly 'org.postgresql:postgresql'
 	
 	// 自動生成getter setter
 	compileOnly 'org.projectlombok:lombok:1.18.22'
@@ -58,3 +58,12 @@ tasks.named('test') {
 // jar {
 //     enabled = true
 // }
+
+bootJar {
+    manifest {
+        attributes "build-api-version": '0.0.1'
+        attributes "build-date": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+    }
+
+    archiveName "springboot-template.jar"
+}

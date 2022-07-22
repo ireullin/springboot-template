@@ -65,3 +65,11 @@ bootJar {
 test {
     useJUnitPlatform()
 }
+
+tasks.register('buildDockerImage') {
+    dependsOn 'bootJar'
+	exec {
+		executable 'docker'
+		args 'build','-t','springboot-template','.','--no-cache'
+	}
+}

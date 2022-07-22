@@ -5,12 +5,14 @@ import org.springframework.stereotype.Component;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 
 
 /**
  * 會直接對應到 application.yaml 裏頭的my-setting
  */
+@Slf4j
 @Data
 @NoArgsConstructor
 @Component

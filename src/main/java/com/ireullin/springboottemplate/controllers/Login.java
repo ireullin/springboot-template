@@ -4,8 +4,6 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,12 +15,12 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Api(tags = "Login")
 @Controller
 public class Login {
-
-    private static Logger log = LoggerFactory.getLogger(Login.class);
 
     @ApiOperation("登入頁面")
     @GetMapping("/login")

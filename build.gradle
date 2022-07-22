@@ -38,6 +38,13 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
 	
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	// testImplementation 'org.testng:testng:5.4.0'
+	// https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher
+	testImplementation(platform("org.junit:junit-bom:5.8.2"))
+	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+	testRuntimeOnly("org.junit.vintage:junit-vintage-engine")
+
 }
 
 dependencyManagement {
@@ -46,19 +53,6 @@ dependencyManagement {
 	}
 }
 
-tasks.named('test') {
-	useJUnitPlatform()
-}
-
-// bootJar {
-//     enabled = false
-// 	mainClassName = 'com.ireullin.springboottemplate.SpringbootTemplateApplication'
-// }
-
-// jar {
-//     enabled = true
-// }
-
 bootJar {
     manifest {
         attributes "build-api-version": '0.0.1'
@@ -66,4 +60,8 @@ bootJar {
     }
 
     archiveName "springboot-template.jar"
+}
+
+test {
+    useJUnitPlatform()
 }

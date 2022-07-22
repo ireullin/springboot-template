@@ -6,8 +6,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,13 +17,13 @@ import com.ireullin.springboottemplate.settings.MySetting;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Api(tags = "Dashboard")
 @Controller
 public class Dashboard {
     
-    private static Logger log = LoggerFactory.getLogger(Dashboard.class);
-
     public record InfoRsp(String port,MySetting setting) {
     }
 

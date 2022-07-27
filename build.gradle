@@ -29,6 +29,9 @@ dependencies {
 	
 	// swagger
 	implementation 'io.springfox:springfox-boot-starter:3.0.0'
+
+	// jwt
+    implementation 'com.auth0:java-jwt:4.0.0'
 	
 	// 資料庫
 	runtimeOnly 'org.postgresql:postgresql'
